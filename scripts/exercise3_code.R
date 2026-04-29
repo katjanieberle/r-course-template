@@ -56,3 +56,21 @@ legend("topleft",
 
 #-------------------------------------------------------------------------------
 
+
+# 1) In welchem Jahr der größte Bierkonsum?
+
+
+# 2) Wie lange hat das Oktoberfest maximal gedauert?
+
+
+# 3) Wie viele Hendl wurden durchschnittlich konsumiert?
+
+
+# 4) was war der niedrigste Hendl-Preis?
+# 5) Wann erreichte die Besucherzahl ihr Maximum (Jahr) ?
+# 6) In welchem Jahr war das Bier am teuersten?
+# 7) Durchschnittliche Besucheranzahl
+# 8) Preisanstieg vom Bierpreis von 1985 bis 2024 
+# 9) In welchem Jahr war das Bier am günstigsten?
+# 10)Korrelation zwischen Hendl Konsum und Bierkonsum 
+
