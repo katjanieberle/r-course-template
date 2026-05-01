@@ -1,24 +1,88 @@
+#-------------------------------------------------------------------------------
 # wo bin ich?
+#-------------------------------------------------------------------------------
 
 getwd()
 #-------------------------------------------------------------------------------
 # vergleiche !
 
-read.csv2("data//input//oktoberfest.csv")
+dim(read.csv2("data//input//oktoberfest.csv"))
 
-read.csv2("data//input//oktoberfest.csv", sep=",")
+dff <- read.csv2("data//input//oktoberfest.csv", sep=",")
+dff
 #-------------------------------------------------------------------------------
 
 # 1. Analysiere den Data Frame
 
 # 2. Überlege dir 10 verschiedene Fragestellungen und beantworte diese mit Hilfe deines Codes
 
+# 1) In welchem Jahr der größte Bierkonsum?
+max_bier_konsum <- max(dff$bier_konsum)
+max_bier_konsum
+dff[dff$bier_konsum == max_bier_konsum,]
+
+paste("Im Jahr", dff[dff$bier_konsum == max_bier_konsum,"jahr"], 
+      "war der Bierkonsum maximal und lag bei ", max_bier_konsum, "Liter", sep =" ")
+
+# 2) Wie lange hat das Oktoberfest maximal gedauert?
+max(dff$dauer)
+
+paste("Das längste Oktoberfest hat ", max(dff$dauer), " Tage gedauert", sep = " ")
+
+# 3) Wie viele Hendl wurden durchschnittlich konsumiert?
+mean(dff$hendl_konsum)
+
+# 4) was war der niedrigste Hendl-Preis?
+min(as.numeric(dff$hendl_preis))
+
+# 5) Wann erreichte die Besucherzahl ihr Maximum (Jahr) ?
+
+# 2023 
+max_besucheranzahl <- max(as.numeric(dff$besucher_gesamt))
+max_besucheranzahl
+dff[as.numeric(dff$besucher_gesamt) == max_besucheranzahl,]
+
+# 6) In welchem Jahr war das Bier am teuersten?
+max(as.numeric(dff$bier_preis))
+
+# 7) Durchschnittliche Besucheranzahl gesamt
+mean(as.numeric(dff$besucher_gesamt))
+
+# 8) Preisanstieg vom Bierpreis von 1985 bis 2024 
+
+# absolute Veränderung
+
+as.numeric(dff$bier_preis)[38] - as.numeric(dff$bier_preis)[1]
+
+as.numeric(dff$bier_preis)[dim(dff)[1]] - as.numeric(dff$bier_preis)[1]
+
+# relative Veränderung
+
+as.numeric(dff$bier_preis)[38]/as.numeric(dff$bier_preis)[1]
+
+
+# 9) In welchem Jahr war das Bier am günstigsten?
+
+min_bier_preis <- min(as.numeric(dff$bier_preis))
+
+dff[as.numeric(dff$bier_preis) == min_bier_preis,"jahr"]
+
+# 10) Korrelation (Zusammenhang) zwischen Hendl Konsum und Bierkonsum: 
+# Negativer/gegenläufiger Zusammenhang
+
+plot(x=dff$jahr, y=dff$bier_konsum, type="l")
+
+plot(x=dff$jahr, y=dff$bier_preis, type="l")
+
+plot(x=dff$jahr, y=dff$hendl_konsum, type="l")
+
+# Korrelationskoeffizient nach Bravais-Pearson
+# ?cor
+cor(dff$hendl_konsum, dff$bier_konsum)
+
 # 3. Visualisiere den Bierkonsum und Bierpreise, sowie Hendlkonsum und Hendlpreise
 
 #-------------------------------------------------------------------------------
-
-# Bierkonsum und Bierpreise
-dff <- read.csv2("data//input//oktoberfest.csv", sep=",")
 
 par(mar = c(5, 4, 4, 5) + 0.1)
 
@@ -55,22 +119,3 @@ legend("topleft",
 # Generiere 1000 poissonverteilten Zufallsvariablen mit lambda = 1.2 und stelle sie grafisch dar
 
 #-------------------------------------------------------------------------------
-
-
-# 1) In welchem Jahr der größte Bierkonsum?
-
-
-# 2) Wie lange hat das Oktoberfest maximal gedauert?
-
-
-# 3) Wie viele Hendl wurden durchschnittlich konsumiert?
-
-
-# 4) was war der niedrigste Hendl-Preis?
-# 5) Wann erreichte die Besucherzahl ihr Maximum (Jahr) ?
-# 6) In welchem Jahr war das Bier am teuersten?
-# 7) Durchschnittliche Besucheranzahl
-# 8) Preisanstieg vom Bierpreis von 1985 bis 2024 
-# 9) In welchem Jahr war das Bier am günstigsten?
-# 10)Korrelation zwischen Hendl Konsum und Bierkonsum 
-
